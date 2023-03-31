@@ -1,6 +1,6 @@
 const MainProduct = () => {
   return (
-    <main>
+    <main className="grid grid-cols-1">
       <section>Sneaker Company</section>
       <section>
         <p>Sneaker Company</p>
