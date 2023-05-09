@@ -1,19 +1,16 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import NextIcon from "@/componentes/icons/NextIcon";
 import PreviousIcon from "@/componentes/icons/PreviousIcon";
-import imgProduct1 from "@/assets/images/image-product-1.jpg";
-import imgProduct2 from "@/assets/images/image-product-2.jpg";
-import imgProduct3 from "@/assets/images/image-product-3.jpg";
-import imgProduct4 from "@/assets/images/image-product-4.jpg";
 
-import imgProductSmall1 from "@/assets/images/image-product-1-thumbnail.jpg";
-import imgProductSmall2 from "@/assets/images/image-product-2-thumbnail.jpg";
-import imgProductSmall3 from "@/assets/images/image-product-3-thumbnail.jpg";
-import imgProductSmall4 from "@/assets/images/image-product-4-thumbnail.jpg";
-
-const ARRAY_IMGS = [imgProduct1, imgProduct2, imgProduct3, imgProduct4];
-
-export default () => {
+export default ({
+  ARRAY_IMGS = [],
+  ARRAY_IMG_SMALL = [],
+  isOpenModal = false,
+  handleCloseModal = null,
+  handleOpenModal = () => {},
+  ...props
+}) => {
+  const btnSlider = useRef(null);
   const [index, setIndex] = useState(0);
 
   //reemplazo el if, utilizo un operador ternario para el return (?) y saco el ; y lo reemplazo por :
@@ -26,14 +23,23 @@ export default () => {
   };
 
   return (
-    <section className="grid md:grid-cols-4 gap-8">
+    <section {...props}>
+      {isOpenModal && (
+        <button onClick={handleCloseModal} className="md:col-span-4 text-right">
+          cerrar
+        </button>
+      )}
       <div className="col-span-4 relative">
         <img
           src={ARRAY_IMGS[index]}
           alt=""
-          className="aspect-[16/14] w-full md:rounded-md"
+          className="aspect-[16/14] w-full md:rounded-md md:cursor-pointer"
+          onClick={handleOpenModal}
         />
-        <div className="absolute top-1/2 left-0 px-4 flex w-full -translate-y-1/2 justify-between">
+        <div
+          ref={btnSlider}
+          className="absolute top-1/2 left-0 px-4 flex w-full -translate-y-1/2 justify-between"
+        >
           <button
             className="w-10 h-10 rounded-full bg-white grid place-items-center"
             onClick={handleClickPrev}
@@ -48,26 +54,15 @@ export default () => {
           </button>
         </div>
       </div>
-      <img
-        src={imgProductSmall1}
-        alt=""
-        className="hidden md:block md:rounded-md"
-      />
-      <img
-        src={imgProductSmall2}
-        alt=""
-        className="hidden md:block md:rounded-md"
-      />
-      <img
-        src={imgProductSmall3}
-        alt=""
-        className="hidden md:block md:rounded-md"
-      />
-      <img
-        src={imgProductSmall4}
-        alt=""
-        className="hidden md:block md:rounded-md"
-      />
+      {ARRAY_IMG_SMALL.map((smallImg) => (
+        <img
+          key={smallImg}
+          src={smallImg}
+          alt=""
+          className="hidden md:block md:rounded-md"
+          onClick={handleOpenModal}
+        />
+      ))}
     </section>
   );
 };
