@@ -1,4 +1,6 @@
-import SlideProducts from "@/componentes/products/col-images/SlideProducts";
+import SlideProducts from "@/componentes/products/gallery/SlideProducts";
+import ModalProducts from "@/componentes/products/gallery/SlideProducts";
+
 import { useState } from "react";
 
 export default ({ ARRAY_IMGS, ARRAY_IMG_SMALL }) => {
@@ -20,13 +22,16 @@ export default ({ ARRAY_IMGS, ARRAY_IMG_SMALL }) => {
         handleOpenModal={handleOpenModal}
       />
       {isOpenModal && (
-        <SlideProducts
-          ARRAY_IMGS={ARRAY_IMGS}
-          ARRAY_IMG_SMALL={ARRAY_IMG_SMALL}
-          isOpenModal={isOpenModal}
-          className="hidden md:grid md:grid-cols-4 md:absolute md:gap-4 md:max-w-md md:top-1/2 md:left-1/2 md:-translate-y-1/2 md:-translate-x-1/2"
-          handleCloseModal={handleCloseModal}
-        />
+        <>
+          <ModalProducts
+            ARRAY_IMGS={ARRAY_IMGS}
+            ARRAY_IMG_SMALL={ARRAY_IMG_SMALL}
+            isOpenModal={isOpenModal}
+            className="hidden md:grid md:grid-cols-4 md:absolute md:gap-4 md:max-w-md md:top-1/2 md:left-1/2 md:-translate-y-1/2 md:-translate-x-1/2 md:z-10"
+            handleCloseModal={handleCloseModal}
+          />
+          <span className="fixed top-0 left-0 bg-black/70 w-full h-full"></span>
+        </>
       )}
     </>
   );

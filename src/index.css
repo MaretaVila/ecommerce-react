@@ -1,3 +1,20 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* 
+:root {
+    --isActiveModal:none
+}
+
+
+body:: after {
+    display: var(--isActiveModal);
+    position: absolute;
+    top:0;
+    lefto:0;
+    content: "bloque traslucido que afecta al body";
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0,0,0, 0.5);
+} */

@@ -35,11 +35,11 @@ export default ({
           <CloseIcon />
         </button>
       )}
-      <div className="col-span-4 relative">
+      <div className="col-span-4 relative mt-4">
         <img
           src={ARRAY_IMGS[index]}
           alt=""
-          className="aspect-[16/14] w-full md:rounded-md md:cursor-pointer"
+          className="object-cover aspect-[16/14] w-full md:rounded-md md:cursor-pointer md:aspect-[16/16] xl:aspect-[16/16] 2xl:max-h-[500PX] 2XL:xl:aspect-[16/20]"
           onClick={handleOpenModal}
         />
         <div
@@ -69,7 +69,7 @@ export default ({
           onClick={() => {
             setIndex(i);
           }}
-          className="relative rounded-md overflow-hidden cursor-pointer"
+          className="relative rounded-md overflow-hidden cursor-pointer hover:border"
         >
           <img
             src={smallImg}
@@ -77,6 +77,7 @@ export default ({
             className="hidden md:block md:rounded-md"
             onClick={handleOpenModal}
           />
+          {/* interpolación `${}`*/}
           <span
             className={`absolute top-0 h-full w-full hover:bg-[rgba(255,255,255,0.5)] ${
               i === index && "bg-[rgba(255,255,255,0.5)]"
