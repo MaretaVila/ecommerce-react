@@ -7,20 +7,14 @@ import { useState } from "react";
 import NavLinkHeader from "@/componentes/header/NavLinkHeader";
 
 const IndexHeader = () => {
-  const [navClass, setNavClass] = useState(
-    "hidden font-bold md:static md:mr-auto md:h-auto md:flex md:flex-row md:gap-4 md:p-0"
-  );
+  const [isOpenMenu, setIsOpenMenu] = useState(false);
 
   const handleOpenMenu = () => {
-    setNavClass(
-      "z-10 absolute font-bold top-0 left-0 h-full p-8 gap-y-5 w-4/5 flex flex-col bg-white md:static md:mr-auto md:h-auto md:flex md:flex-row md:gap-4 md:p-0"
-    );
+    setIsOpenMenu(true);
   };
 
   const handleCloseMenu = () => {
-    setNavClass(
-      "hidden font-bold md:static md:mr-auto md:h-auto md:flex md:flex-row md:gap-4 md:p-0"
-    );
+    setIsOpenMenu(false);
   };
 
   return (
@@ -34,7 +28,13 @@ const IndexHeader = () => {
           alt="Logo sneakers"
           className="mr-auto mb-1 h-5 md:mr-0"
         />
-        <nav className={navClass}>
+        <nav
+          className={`md:static md:mr-auto md:h-auto md:flex md:flex-row md:gap-4 md:p-0 font-bold ${
+            isOpenMenu
+              ? "z-10 absolute top-0 left-0 h-full p-8 gap-y-5 w-4/5 flex flex-col bg-white"
+              : "hidden"
+          }`}
+        >
           <button className="mb-8 md:hidden" onClick={handleCloseMenu}>
             <CloseIcon />
           </button>
