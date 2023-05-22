@@ -49,6 +49,15 @@ const IndexHeader = () => {
             <CartIcon />
           </button>
           <img src={AvatarImagen} alt="avatar" className="w-10" />
+          <section className="absoltue top-12 left-0 bg-gray-300 z-10">
+            <h4>Cart</h4>
+            <hr />
+            <div className="grid grid-cols-[1fr_4fr_1fr]">
+              <img src="" alt="" />
+              <div>Lorem ipsum, dolor sit</div>
+              <button>Delete</button>
+            </div>
+          </section>
         </div>
       </header>
       <span className="container mx-auto hidenn h-[1px] bg-gray-200 w-full md:block"></span>
