@@ -1,10 +1,13 @@
+import { useState } from "react";
+
 import LogoSneakers from "@/assets/images/logo.svg";
 import AvatarImagen from "@/assets/images/image-avatar.png";
+
 import MenuIcon from "@/componentes/icons/MenuIcon";
 import CartIcon from "@/componentes/icons/CartIcon";
 import CloseIcon from "@/componentes/icons/CloseIcon";
-import { useState } from "react";
 import NavLinkHeader from "@/componentes/header/NavLinkHeader";
+import CartDetailsHeader from "@/componentes/header/CartDetailsHeader";
 
 const IndexHeader = () => {
   const [isOpenMenu, setIsOpenMenu] = useState(false);
@@ -19,7 +22,7 @@ const IndexHeader = () => {
 
   return (
     <>
-      <header className="container mx-auto flex items-center gap-8 p-4 md:p-0">
+      <header className="container relative mx-auto flex items-center gap-8 p-2 md:p-0">
         <button className="md:hidden" onClick={handleOpenMenu}>
           <MenuIcon />
         </button>
@@ -29,9 +32,9 @@ const IndexHeader = () => {
           className="mr-auto mb-1 h-5 md:mr-0"
         />
         <nav
-          className={`md:static md:mr-auto md:h-auto md:flex md:flex-row md:gap-4 md:p-0 font-bold ${
+          className={`font-bold md:static md:mr-auto md:flex md:h-auto md:flex-row md:gap-4 md:p-0 ${
             isOpenMenu
-              ? "z-10 absolute top-0 left-0 h-full p-8 gap-y-5 w-4/5 flex flex-col bg-white"
+              ? "absolute top-0 left-0 z-10 flex h-full w-4/5 flex-col gap-y-5 bg-white p-8"
               : "hidden"
           }`}
         >
@@ -49,18 +52,10 @@ const IndexHeader = () => {
             <CartIcon />
           </button>
           <img src={AvatarImagen} alt="avatar" className="w-10" />
-          <section className="absoltue top-12 left-0 bg-gray-300 z-10">
-            <h4>Cart</h4>
-            <hr />
-            <div className="grid grid-cols-[1fr_4fr_1fr]">
-              <img src="" alt="" />
-              <div>Lorem ipsum, dolor sit</div>
-              <button>Delete</button>
-            </div>
-          </section>
+          <CartDetailsHeader />
         </div>
       </header>
-      <span className="container mx-auto hidenn h-[1px] bg-gray-200 w-full md:block"></span>
+      <span className="hidenn container mx-auto h-[1px] w-full bg-gray-200 md:block"></span>
     </>
   );
 };
