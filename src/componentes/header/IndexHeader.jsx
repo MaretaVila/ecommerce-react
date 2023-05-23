@@ -12,6 +12,8 @@ import CartDetailsHeader from "@/componentes/header/CartDetailsHeader";
 const IndexHeader = () => {
   const [isOpenMenu, setIsOpenMenu] = useState(false);
 
+  const [isOpenDetailsCart, setOpenDetailsCart] = useState(false);
+
   const handleOpenMenu = () => {
     setIsOpenMenu(true);
   };
@@ -48,11 +50,11 @@ const IndexHeader = () => {
           <NavLinkHeader text="Contact" />
         </nav>
         <div className="flex gap-4">
-          <button>
+          <button onClick={() => setOpenDetailsCart(!isOpenDetailsCart)}>
             <CartIcon />
           </button>
           <img src={AvatarImagen} alt="avatar" className="w-10" />
-          <CartDetailsHeader />
+          {isOpenDetailsCart && <CartDetailsHeader />}
         </div>
       </header>
       <span className="hidenn container mx-auto h-[1px] w-full bg-gray-200 md:block"></span>

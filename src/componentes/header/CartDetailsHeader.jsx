@@ -7,7 +7,7 @@ export default () => {
       <div className="mx-4 rounded-md bg-white shadow-md">
         <h4 className="px-6 py-8 text-lg font-bold">Cart</h4>
         <hr />
-        <div className="grid grid-cols-[1fr_4fr_1fr] items-center gap-4 px-6 py-8">
+        <article className="grid grid-cols-[1fr_4fr_1fr] items-center gap-4 px-6 py-4">
           <img className="rounded-md" src={imgSmall} alt="" />
           <div>
             <h6> Fall Limited Edition Sneakers</h6>
@@ -19,7 +19,7 @@ export default () => {
           <button className="ml-auto">
             <DeleteIcon className="hover:fill-orange-primary" />
           </button>
-        </div>
+        </article>
         <div className="px-6 pb-8">
           <button className="hover:bg-orange-700x w-full rounded-md bg-orange-primary py-4 text-white transition-all">
             Checkout
