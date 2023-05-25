@@ -1,4 +1,6 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+
+import { useCartDetails } from "@/context/useCartDetails";
 
 import LogoSneakers from "@/assets/images/logo.svg";
 import AvatarImagen from "@/assets/images/image-avatar.png";
@@ -10,6 +12,8 @@ import NavLinkHeader from "@/componentes/header/NavLinkHeader";
 import CartDetailsHeader from "@/componentes/header/CartDetailsHeader";
 
 const IndexHeader = () => {
+  const { TotalQuantityProduct } = useContext(useCartDetails);
+
   const [isOpenMenu, setIsOpenMenu] = useState(false);
 
   const [isOpenDetailsCart, setOpenDetailsCart] = useState(false);
@@ -50,8 +54,14 @@ const IndexHeader = () => {
           <NavLinkHeader text="Contact" />
         </nav>
         <div className="flex gap-4">
-          <button onClick={() => setOpenDetailsCart(!isOpenDetailsCart)}>
+          <button
+            onClick={() => setOpenDetailsCart(!isOpenDetailsCart)}
+            className="relative"
+          >
             <CartIcon />
+            <span className="absolute top-0 right-0 translate-x-1 rounded-full bg-orange-primary px-2 text-xs font-bold text-white">
+              {TotalQuantityProduct}
+            </span>
           </button>
           <img src={AvatarImagen} alt="avatar" className="w-10" />
           {isOpenDetailsCart && <CartDetailsHeader />}
