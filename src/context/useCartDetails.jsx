@@ -3,10 +3,18 @@ import { createContext, useState } from "react";
 export const useCartDetails = createContext();
 
 export default (props) => {
-  const [test, setTest] = useState("test");
+  const [cartProducts, setCartProducts] = useState([]);
+
+  const addProducts = (product) => {
+    setCartProducts([...cartProducts, product]);
+  };
+
+  const deleteProducts = () => {};
 
   return (
-    <useCartDetails.Provider value={{ test, setTest }}>
+    <useCartDetails.Provider
+      value={{ cartProducts, addProducts, deleteProducts }}
+    >
       {props.children}
     </useCartDetails.Provider>
   );

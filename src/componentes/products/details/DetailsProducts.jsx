@@ -1,6 +1,10 @@
 import CartIcon from "@/componentes/icons/CartIcon.jsx";
+import { useCartDetails } from "@/context/useCartDetails";
+import { useContext } from "react";
 
 export default ({ objectProduct }) => {
+  const { addProducts } = useContext(useCartDetails);
+
   return (
     <section className="container mx-auto px-4 md:px-4">
       <p className="mb-3 mt-3 text-sm font-bold uppercase tracking-wide text-orange-primary">
@@ -29,7 +33,21 @@ export default ({ objectProduct }) => {
           <span className="text-xl">0</span>
           <button className="text-3xl text-orange-primary">+</button>
         </div>
-        <button className="col-span-3 flex items-center justify-center gap-x-3 rounded-md bg-orange-primary py-3 text-white transition-all hover:bg-orange-800 md:col-span-1">
+        <button
+          className="col-span-3 flex items-center justify-center gap-x-3 rounded-md bg-orange-primary py-3 text-white transition-all hover:bg-orange-800 md:col-span-1"
+          onClick={() =>
+            addProducts({
+              img: objectProduct.imagesSmall[0],
+              id: objectProduct.id,
+              discountPrice: (
+                objectProduct.price *
+                (1 - objectProduct.discount)
+              ).toFixed(2),
+              title: objectProduct.title,
+              quantity: 1,
+            })
+          }
+        >
           <CartIcon className="fill-white" />
           <span>Add to cart</span>
         </button>
